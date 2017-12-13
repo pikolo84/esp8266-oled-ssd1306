@@ -609,10 +609,9 @@ bool OLEDDisplay::setLogBuffer(uint16_t lines, uint16_t chars){
 
 //GoTo function
 void OLEDDisplay::goTo(uint16_t x, uint16_t y) {
-  sendCommand(0x3F - y);
   sendCommand(SETDISPLAYOFFSET);
-  sendCommand(0x00 + x);
-  sendCommand(SETSTARTLINE);
+  sendCommand(x);
+  sendCommand(SETSTARTLINE + y);
 }
 
 size_t OLEDDisplay::write(uint8_t c) {
