@@ -607,6 +607,14 @@ bool OLEDDisplay::setLogBuffer(uint16_t lines, uint16_t chars){
   return true;
 }
 
+//GoTo function
+void OLEDDisplay::goTo(uint16_t x, uint16_t y) {
+  sendCommand(0x3F - y);
+  sendCommand(SETDISPLAYOFFSET);
+  sendCommand(0x00 + x);
+  sendCommand(SETSTARTLINE);
+}
+
 size_t OLEDDisplay::write(uint8_t c) {
   if (this->logBufferSize > 0) {
     // Don't waste space on \r\n line endings, dropping \r
